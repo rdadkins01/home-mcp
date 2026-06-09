@@ -15,5 +15,6 @@ venv/
 env/
 ENV/
 .env/
+.env
 virtualenv/
 .virtualenv/

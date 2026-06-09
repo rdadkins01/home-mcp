@@ -1,10 +1,18 @@
-import yaml
+import yaml, os
+from dotenv import load_dotenv
 from netmiko import ConnectHandler
 from commands import COMMANDS
 
 
+load_dotenv()
+
 with open("inventory.yaml") as file:
     INVENTORY = yaml.safe_load(file)["devices"]
+
+
+for device in INVENTORY.values():
+    device["username"] = os.environ["MCP_USERNAME"]
+    device["password"] = os.environ["MCP_PASSWORD"]
 
 
 def get_device(host_name: str) -> dict:
